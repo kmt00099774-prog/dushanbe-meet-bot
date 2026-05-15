@@ -5,7 +5,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 logging.basicConfig(level=logging.INFO)
 
-TOKEN = os.environ.get("TOKEN")
+TOKEN = "8985381810:AAFBTBnWVNhmz6XZvSG8GKpgF4Csbq32oU0"
 
 waiting_users = []
 active_chats = {}

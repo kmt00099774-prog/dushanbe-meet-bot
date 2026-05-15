@@ -1,0 +1,16 @@
+name: Run Bot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */5 * * *'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install python-telegram-bot==20.7
+      - run: timeout 18000 python bot.py || true

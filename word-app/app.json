@@ -1,13 +1,14 @@
 {
   "expo": {
     "name": "Читай и учи",
-    "slug": "word-app",
+    "slug": "chitai-i-uchi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.chitaiuchi.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -16,7 +17,8 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.chitaiuchi.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

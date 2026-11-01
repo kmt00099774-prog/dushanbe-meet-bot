@@ -1,0 +1,42 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [main, claude/word-learning-app-b9lg56]
+    paths: ['word-app/**', '.github/workflows/build-apk.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: word-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: android-actions/setup-android@v3
+      - run: npm ci
+      - run: npx expo prebuild --platform android --no-install
+        env:
+          CI: 1
+      - run: ./gradlew assembleRelease --no-daemon
+        working-directory: word-app/android
+      - run: cp android/app/build/outputs/apk/release/app-release.apk ../chitai-i-uchi.apk
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: app-latest
+          name: Читай и учи (Android)
+          body: Скачайте файл chitai-i-uchi.apk ниже и откройте его на телефоне Android.
+          prerelease: false
+          make_latest: true
+          files: chitai-i-uchi.apk
